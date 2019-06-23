@@ -1,0 +1,1188 @@
+{
+	"info": {
+		"_postman_id": "f644eec9-340a-4d9d-85bd-6f164cc1763b",
+		"name": "pr0gramm",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Inbox",
+			"item": [
+				{
+					"name": "conversations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://pr0gramm.com/api/inbox/conversations?",
+							"protocol": "https",
+							"host": [
+								"pr0gramm",
+								"com"
+							],
+							"path": [
+								"api",
+								"inbox",
+								"conversations"
+							],
+							"query": [
+								{
+									"key": "older",
+									"value": "1559753469",
+									"description": "Älter als (Zeitstempel)",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "messages",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://pr0gramm.com/api/inbox/messages",
+							"protocol": "https",
+							"host": [
+								"pr0gramm",
+								"com"
+							],
+							"path": [
+								"api",
+								"inbox",
+								"messages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "comments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://pr0gramm.com/api/inbox/comments",
+							"protocol": "https",
+							"host": [
+								"pr0gramm",
+								"com"
+							],
+							"path": [
+								"api",
+								"inbox",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "_nonce",
+									"value": "{{nonce}}",
+									"description": "Die ersten 16 Stellen der Session-ID",
+									"type": "text"
+								},
+								{
+									"key": "comment",
+									"value": "{{$timestamp}} API-TEST",
+									"description": "Nachricht",
+									"type": "text"
+								},
+								{
+									"key": "recipientName",
+									"value": "deleted",
+									"description": "Name des Empfängers",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://pr0gramm.com/api/inbox/post",
+							"protocol": "https",
+							"host": [
+								"pr0gramm",
+								"com"
+							],
+							"path": [
+								"api",
+								"inbox",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "message",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://pr0gramm.com/api/inbox/messages?with=deleted",
+							"protocol": "https",
+							"host": [
+								"pr0gramm",
+								"com"
+							],
+							"path": [
+								"api",
+								"inbox",
+								"messages"
+							],
+							"query": [
+								{
+									"key": "with",
+									"value": "deleted",
+									"description": "Name des Konversationspartners"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://pr0gramm.com/api/inbox/all",
+							"protocol": "https",
+							"host": [
+								"pr0gramm",
+								"com"
+							],
+							"path": [
+								"api",
+								"inbox",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6a45ef56-d4cd-4028-9a6c-64a90b37c55b",
+								"exec": [
+									"let me = JSON.parse(pm.cookies.get(\"me\"));",
+									"pm.environment.set(\"nonce\", me.id.substring(0,16));",
+									"pm.environment.set(\"id\", me.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "{{name}}",
+									"description": "Nutzername",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"description": "Passwort",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://pr0gramm.com/api/user/login",
+							"protocol": "https",
+							"host": [
+								"pr0gramm",
+								"com"
+							],
+							"path": [
+								"api",
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://pr0gramm.com/api/user/info",
+							"protocol": "https",
+							"host": [
+								"pr0gramm",
+								"com"
+							],
+							"path": [
+								"api",
+								"user",
+								"info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sync",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://pr0gramm.com/api/user/sync?offset=0",
+							"protocol": "https",
+							"host": [
+								"pr0gramm",
+								"com"
+							],
+							"path": [
+								"api",
+								"user",
+								"sync"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "_nonce",
+									"value": "{{nounce}}",
+									"type": "text"
+								},
+								{
+									"key": "id",
+									"value": "{{id}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://pr0gramm.com/api/user/logout",
+							"protocol": "https",
+							"host": [
+								"pr0gramm",
+								"com"
+							],
+							"path": [
+								"api",
+								"user",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "loggedin",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://pr0gramm.com/api/user/loggedin",
+							"protocol": "https",
+							"host": [
+								"pr0gramm",
+								"com"
+							],
+							"path": [
+								"api",
+								"user",
+								"loggedin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://pr0gramm.com/api/profile/info?name=Gamb&flags=15",
+							"protocol": "https",
+							"host": [
+								"pr0gramm",
+								"com"
+							],
+							"path": [
+								"api",
+								"profile",
+								"info"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Gamb"
+								},
+								{
+									"key": "flags",
+									"value": "15"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "siteSettings",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "_nonce",
+									"value": "{{nonce}}",
+									"type": "text"
+								},
+								{
+									"key": "likesArePublic",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "showAds",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "theme",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "userStatus",
+									"value": "default",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://pr0gramm.com/api/user/sitesettings",
+							"protocol": "https",
+							"host": [
+								"pr0gramm",
+								"com"
+							],
+							"path": [
+								"api",
+								"user",
+								"sitesettings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "changePassword",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "_nonce",
+									"value": "{{nonce}}",
+									"type": "text"
+								},
+								{
+									"key": "currentPassword",
+									"value": "{{password}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://pr0gramm.com/api/user/changepassword",
+							"protocol": "https",
+							"host": [
+								"pr0gramm",
+								"com"
+							],
+							"path": [
+								"api",
+								"user",
+								"changepassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "emailChange",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "_nonce",
+									"value": "{{nonce}}",
+									"type": "text"
+								},
+								{
+									"key": "currentPassword",
+									"value": "{{password}}",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "new@email.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://pr0gramm.com/api/user/requestemailchange",
+							"protocol": "https",
+							"host": [
+								"pr0gramm",
+								"com"
+							],
+							"path": [
+								"api",
+								"user",
+								"requestemailchange"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "items",
+			"item": [
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://pr0gramm.com/api/items/get?",
+							"protocol": "https",
+							"host": [
+								"pr0gramm",
+								"com"
+							],
+							"path": [
+								"api",
+								"items",
+								"get"
+							],
+							"query": [
+								{
+									"key": "older",
+									"value": "3261817",
+									"description": "Älter als Post-ID",
+									"disabled": true
+								},
+								{
+									"key": "flags",
+									"value": "15",
+									"description": "9 = SFW, 2 = NSFW, 4 = NSFL = 4 // ADDIEREN",
+									"disabled": true
+								},
+								{
+									"key": "promoted",
+									"value": "1",
+									"description": "1 = Top, 0 = Neu",
+									"disabled": true
+								},
+								{
+									"key": "user",
+									"value": "Gamb",
+									"description": "Beschränkung auf Hochlads von",
+									"disabled": true
+								},
+								{
+									"key": "likes",
+									"value": "",
+									"description": "Beschränkung auf Favoriten von",
+									"disabled": true
+								},
+								{
+									"key": "self",
+									"value": "true",
+									"description": "Wenn likes: Handelt es sich um deine eigenen Favorieten?",
+									"disabled": true
+								},
+								{
+									"key": "following",
+									"value": "1",
+									"description": "Beschränkung auf deine eigene Stelz-Liste",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://pr0gramm.com/api/items/info?itemId=1",
+							"protocol": "https",
+							"host": [
+								"pr0gramm",
+								"com"
+							],
+							"path": [
+								"api",
+								"items",
+								"info"
+							],
+							"query": [
+								{
+									"key": "itemId",
+									"value": "1",
+									"description": "ID des Hochlads"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "vote",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "_nonce",
+									"value": "{{nonce}}",
+									"description": "Die ersten 16 Stellen der Session-ID",
+									"type": "text"
+								},
+								{
+									"key": "id",
+									"value": "1",
+									"description": "ID des Hochlads",
+									"type": "text"
+								},
+								{
+									"key": "vote",
+									"value": "1",
+									"description": "-1 = Minus, 1 = Plus, 2 = Fav, 0 = Kein Vote/Vote zurückziehen",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://pr0gramm.com/api/items/vote",
+							"protocol": "https",
+							"host": [
+								"pr0gramm",
+								"com"
+							],
+							"path": [
+								"api",
+								"items",
+								"vote"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tags",
+			"item": [
+				{
+					"name": "top",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://pr0gramm.com/api/tags/top",
+							"protocol": "https",
+							"host": [
+								"pr0gramm",
+								"com"
+							],
+							"path": [
+								"api",
+								"tags",
+								"top"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "_nonce",
+									"value": "{{nonce}}",
+									"description": "Die ersten 16 Stellen der Session-ID",
+									"type": "text"
+								},
+								{
+									"key": "tags",
+									"value": "Test,Test2",
+									"description": "Tags (Kommaseperiert)",
+									"type": "text"
+								},
+								{
+									"key": "ItemId",
+									"value": "1",
+									"description": "ID des Hochlads",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://pr0gramm.com/api/tags/add",
+							"protocol": "https",
+							"host": [
+								"pr0gramm",
+								"com"
+							],
+							"path": [
+								"api",
+								"tags",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "vote",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "_nonce",
+									"value": "{{nonce}}",
+									"description": "Die ersten 16 Stellen der Session-ID",
+									"type": "text"
+								},
+								{
+									"key": "id",
+									"value": "1",
+									"description": "ID des Tags",
+									"type": "text"
+								},
+								{
+									"key": "vote",
+									"value": "1",
+									"description": "-1 = Minus, 1 = Plus, 0 = Kein Vote/Vote zurückziehen",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://pr0gramm.com/api/tags/vote",
+							"protocol": "https",
+							"host": [
+								"pr0gramm",
+								"com"
+							],
+							"path": [
+								"api",
+								"tags",
+								"vote"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "comments",
+			"item": [
+				{
+					"name": "vote",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "_nonce",
+									"value": "{{nonce}}",
+									"description": "Die ersten 16 Stellen der Session-ID",
+									"type": "text"
+								},
+								{
+									"key": "id",
+									"value": "1",
+									"description": "ID des Kommentars",
+									"type": "text"
+								},
+								{
+									"key": " vote",
+									"value": "1",
+									"description": "-1 = Minus, 1 = Plus, 0 = Nichts/Vote zurückziehen, 2 = Fav",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://pr0gramm.com/api/comments/vote",
+							"protocol": "https",
+							"host": [
+								"pr0gramm",
+								"com"
+							],
+							"path": [
+								"api",
+								"comments",
+								"vote"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "_nonce",
+									"value": "{{nonce}}",
+									"description": "Die ersten 16 Stellen der Session-ID",
+									"type": "text"
+								},
+								{
+									"key": "comment",
+									"value": "TEXT",
+									"description": "Kommentartext",
+									"type": "text"
+								},
+								{
+									"key": "ItemId",
+									"value": "1",
+									"description": "ID des Bildes",
+									"type": "text"
+								},
+								{
+									"key": "parentId",
+									"value": "0",
+									"description": "ID eines übergeordneten Kommentars",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "https://pr0gramm.com/api/comments/post",
+							"protocol": "https",
+							"host": [
+								"pr0gramm",
+								"com"
+							],
+							"path": [
+								"api",
+								"comments",
+								"post"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "contact",
+			"item": [
+				{
+					"name": "report",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "_nonce",
+									"value": "{{nonce}}",
+									"description": "Die ersten 16 Stellen der Session-ID",
+									"type": "text"
+								},
+								{
+									"key": "commentId",
+									"value": "0",
+									"description": "0, falls nur ein Post gemeldet werden soll. Kommentar-ID, wenn ein Kommentar gemeldet werden soll.",
+									"type": "text"
+								},
+								{
+									"key": "itemId",
+									"value": "1",
+									"description": "ID des Hochlads",
+									"type": "text"
+								},
+								{
+									"key": "reason",
+									"value": "custom",
+									"description": "Grund (custom)",
+									"type": "text"
+								},
+								{
+									"key": "customReason",
+									"value": "Test, bitte ignorieren",
+									"description": "Grund-Text",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://pr0gramm.com/api/contact/report",
+							"protocol": "https",
+							"host": [
+								"pr0gramm",
+								"com"
+							],
+							"path": [
+								"api",
+								"contact",
+								"report"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "send",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "_nonce",
+									"value": "{{nonce}}",
+									"description": "Die ersten 16 Stellen der Session-ID",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "cha0s@pr0gramm.com",
+									"description": "E-Mailadresse deines Accounts",
+									"type": "text"
+								},
+								{
+									"key": "subject",
+									"value": "Test",
+									"description": "Betreff",
+									"type": "text"
+								},
+								{
+									"key": "message",
+									"value": "Dies ist ein Test, bitte igorieren. Danke!",
+									"description": "Nachricht",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://pr0gramm.com/api/contact/send",
+							"protocol": "https",
+							"host": [
+								"pr0gramm",
+								"com"
+							],
+							"path": [
+								"api",
+								"contact",
+								"send"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "profile",
+			"item": [
+				{
+					"name": "comments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://pr0gramm.com/api/profile/comments?name=Gamb&flags=15",
+							"protocol": "https",
+							"host": [
+								"pr0gramm",
+								"com"
+							],
+							"path": [
+								"api",
+								"profile",
+								"comments"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Gamb",
+									"description": "Nutzername"
+								},
+								{
+									"key": "flags",
+									"value": "15",
+									"description": "Flags"
+								},
+								{
+									"key": "before",
+									"value": "1560367960",
+									"description": "Älter als",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "commentlikes",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{me}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://pr0gramm.com/api/profile/commentlikes?name=5yn74x&flags=15&before=1560722887",
+							"protocol": "https",
+							"host": [
+								"pr0gramm",
+								"com"
+							],
+							"path": [
+								"api",
+								"profile",
+								"commentlikes"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "5yn74x",
+									"description": "Nutzername"
+								},
+								{
+									"key": "flags",
+									"value": "15",
+									"description": "Flags"
+								},
+								{
+									"key": "before",
+									"value": "1560722887",
+									"description": "Älter als"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "b7e8d8c2-2b44-46a7-9486-7f358e0115dc",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "cb959a74-c404-45e7-a28d-22b378102ac1",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "df5f08aa-3d4d-49fa-b46c-e0e70cd19ecc",
+			"key": "name",
+			"value": "",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"id": "a446efec-a50d-4497-8db6-a920410b3225",
+			"key": "password",
+			"value": "",
+			"type": "string",
+			"disabled": true
+		}
+	]
+}
