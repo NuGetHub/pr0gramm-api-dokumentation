@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ce2221a0-0e42-4c7a-a771-4458e0263a0d",
+		"_postman_id": "9d9d2a63-25e7-4608-b85f-111f75d48fd3",
 		"name": "pr0gramm",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -14,7 +14,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://pr0gramm.com/api/inbox/conversations?",
+							"raw": "https://pr0gramm.com/api/inbox/conversations",
 							"protocol": "https",
 							"host": [
 								"pr0gramm",
@@ -179,13 +179,14 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "user",
 			"item": [
 				{
-					"name": "Login",
+					"name": "login",
 					"event": [
 						{
 							"listen": "test",
@@ -206,8 +207,8 @@
 							{
 								"key": "Content-Type",
 								"name": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"type": "text"
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
 							}
 						],
 						"body": {
@@ -223,6 +224,18 @@
 									"key": "password",
 									"value": "{{password}}",
 									"description": "Passwort",
+									"type": "text"
+								},
+								{
+									"key": "captcha",
+									"value": "3d56s",
+									"description": "Beispiel captcha Lösung",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"description": "Token der captcha Abfrage",
 									"type": "text"
 								}
 							]
@@ -542,16 +555,47 @@
 				},
 				{
 					"name": "captcha",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "497b2529-798e-4212-b291-ae6e048b603a",
+								"exec": [
+									"var resp = pm.response.json();",
+									"pm.environment.set(\"token\", resp.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": ""
+							"raw": "https://pr0gramm.com/api/user/captcha?bust=0.0881673087115173",
+							"protocol": "https",
+							"host": [
+								"pr0gramm",
+								"com"
+							],
+							"path": [
+								"api",
+								"user",
+								"captcha"
+							],
+							"query": [
+								{
+									"key": "bust",
+									"value": "0.0881673087115173",
+									"description": "Beispiel bust"
+								}
+							]
 						}
 					},
 					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "items",
@@ -706,7 +750,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "tags",
@@ -834,7 +879,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "comments",
@@ -918,7 +964,7 @@
 									"type": "text"
 								},
 								{
-									"key": "ItemId",
+									"key": "itemId",
 									"value": "1",
 									"description": "ID des Bildes",
 									"type": "text"
@@ -948,7 +994,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "contact",
@@ -1073,7 +1120,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "profile",
@@ -1161,7 +1209,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"event": [
@@ -1201,5 +1250,6 @@
 			"type": "string",
 			"disabled": true
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }
