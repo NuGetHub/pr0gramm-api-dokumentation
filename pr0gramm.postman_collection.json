@@ -760,7 +760,7 @@
 									"type": "text"
 								},
 								{
-									"key": "ItemId",
+									"key": "itemId",
 									"value": "1",
 									"description": "ID des Hochlads",
 									"type": "text"
