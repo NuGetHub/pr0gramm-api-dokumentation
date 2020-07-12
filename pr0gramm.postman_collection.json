@@ -583,7 +583,7 @@
 								{
 									"key": "flags",
 									"value": "15",
-									"description": "1 = SFW, 2 = NSFW, 4 = NSFL, 9 = NSFP // ADDIEREN",
+									"description": "1 = SFW, 2 = NSFW, 4 = NSFL, 8 = NSFP // ADDIEREN",
 									"disabled": true
 								},
 								{
