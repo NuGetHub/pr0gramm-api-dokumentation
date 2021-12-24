@@ -581,6 +581,12 @@
 									"disabled": true
 								},
 								{
+									"key": "newer",
+									"value": "3261814",
+									"description": "Neuer als Post-ID",
+									"disabled": true
+								},
+								{
 									"key": "flags",
 									"value": "15",
 									"description": "9 = SFW, 2 = NSFW, 4 = NSFL = 4 // ADDIEREN",
